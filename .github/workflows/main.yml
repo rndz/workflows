@@ -7,19 +7,14 @@ on:
   pull_request:
     types:
       - opened
-    branches: 
-      - main
-      - 'named**'
 
 
 jobs:
   addlabel:
-    # The type of runner that the job will run on
+    if:  startsWith(github.head_ref, 'named**')
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - env:
-          ISSUE_URL: ${{ github.event.issue.html_url }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
         run: |
-          gh issue edit $ISSUE_URL --add-label "named"
+          gh pr edit $PR_URL --add-label "named"
