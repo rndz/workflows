@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - env:
+          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
         run: |
           gh pr edit $PR_URL --add-label "named"
