@@ -21,3 +21,5 @@ jobs:
           PR_URL: ${{ github.event.pull_request.html_url }}
         run: |
           gh pr edit $PR_URL --add-label "named"
+          gh pr close $PR_URL
+          gh pr reopen $PR_URL
