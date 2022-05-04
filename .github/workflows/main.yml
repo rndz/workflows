@@ -11,7 +11,7 @@ on:
 
 jobs:
   addlabel:
-    if:  startsWith(github.head_ref, 'named**')
+    if:  startsWith(github.head_ref, 'named')
     runs-on: ubuntu-latest
     steps:
       - env:
