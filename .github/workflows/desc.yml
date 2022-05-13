@@ -10,8 +10,7 @@ jobs:
     steps:
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          PR_BODY: ${{ github.event.pull_request.body }}
-          PR_APPROVE_BY: ${{ github.event.issue_comment.user.login }}
+          PR_URL: ${{ github.event.issue.html_url }}
+          PR_APPROVE_BY: ${{ github.event.issue.user.login }}
         run: |
-          gh pr edit $PR_URL --body '$PR_BODY Approved by: $PR_APPROVE_BY'
+          gh pr edit $PR_URL --body 'Approved by: $PR_APPROVE_BY'
