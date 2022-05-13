@@ -2,9 +2,7 @@
 
 name: Desc
 
-on:
-  pull_request_review:
-    types: [submitted]
+on: issue_comment
 
 jobs:
   approved:
@@ -15,6 +13,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_URL: ${{ github.event.pull_request.html_url }}
           PR_BODY: ${{ github.event.pull_request.body }}
-          PR_APPROVE_BY: ${{ github.event.review.user.login }}
+          PR_APPROVE_BY: ${{ github.event.issue_comment.user.login }}
         run: |
           gh pr edit $PR_URL --body '$PR_BODY Approved by: $PR_APPROVE_BY'
