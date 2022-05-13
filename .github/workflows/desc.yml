@@ -4,6 +4,9 @@ name: Desc
 
 on: issue_comment
 
+permissions:
+  pull-requests: write
+
 jobs:
   approved:
     runs-on: ubuntu-latest  
