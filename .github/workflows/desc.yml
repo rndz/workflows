@@ -1,0 +1,20 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Desc
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  approved:
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest  
+    steps:
+      - env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_APPROVE_BY: ${{ github.event.review.user.login }}
+        run: |
+          gh pr edit $PR_URL --body '$PR_BODY Approved by: $PR_APPROVE_BY'
